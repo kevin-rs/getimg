@@ -1,0 +1,43 @@
+[package]
+name = "getimg"
+version = "0.0.1"
+edition = "2021"
+description = """
+📸 GetImg: A CLI and SDK for interacting with the GetImg API, enabling image
+generation and manipulation through various endpoints.
+"""
+authors = ["Mahmoud Harmouch <oss@wiseai.dev>"]
+license = "MIT"
+documentation = "https://docs.rs/getimg"
+repository = "https://github.com/kevin-rs/getimg"
+readme = "README.md"
+categories = ["science"]
+keywords = ["jpeg", "stable-diffusion", "ai", "machine-learning", "png"]
+exclude = ["/out"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.81"
+base64 = "0.22.0"
+clap = { version = "4.5.4", features = ["derive"] , optional = true  }
+reqwest = { version = "0.12.2", features = ["json"] }
+serde = { version = "1.0.197", features = ["derive"] }
+serde_json = "1.0.115"
+tokio = { version = "1.37.0", features = ["full"] }
+
+[features]
+cli = ["clap"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+
+[profile.release]
+codegen-units = 1
+opt-level = "z"
+lto = "thin"
+strip = "symbols"
+
+[badges]
+maintenance = { status = "actively-developed" }
